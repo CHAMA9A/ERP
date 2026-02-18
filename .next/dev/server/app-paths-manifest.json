@@ -1,0 +1,6 @@
+{
+  "/(app)/devis/catalogue/page": "app/(app)/devis/catalogue/page.js",
+  "/(app)/devis/page": "app/(app)/devis/page.js",
+  "/(app)/page": "app/(app)/page.js",
+  "/(app)/taches/page": "app/(app)/taches/page.js"
+}

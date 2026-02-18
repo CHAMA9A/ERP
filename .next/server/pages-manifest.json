@@ -1,0 +1,18 @@
+{
+  "/Clients": "pages/Clients.html",
+  "/CoffreFort": "pages/CoffreFort.html",
+  "/Devis": "pages/Devis.html",
+  "/ForgotPassword": "pages/ForgotPassword.html",
+  "/Index": "pages/Index.html",
+  "/Login": "pages/Login.html",
+  "/NotFound": "pages/NotFound.html",
+  "/Parametres": "pages/Parametres.html",
+  "/Planning": "pages/Planning.html",
+  "/Register": "pages/Register.html",
+  "/Taches": "pages/Taches.html",
+  "/Utilisateurs": "pages/Utilisateurs.html",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+}

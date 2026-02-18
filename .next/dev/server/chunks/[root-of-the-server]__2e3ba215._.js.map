@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/sav/Desktop/work/ERP/rizat-modern-erp-interface-main/V1/src/app/api/planning/route.ts"],"sourcesContent":["import { NextResponse } from \"next/server\";\n\n// Placeholder route for planning and calendar operations.\n// TODO: Implement planning API backed by Prisma and PostgreSQL.\n\nexport async function GET() {\n  return NextResponse.json(\n    { message: \"Planning API not implemented yet\" },\n    { status: 501 },\n  );\n}\n\n"],"names":[],"mappings":";;;;AAAA;;AAKO,eAAe;IACpB,OAAO,gJAAY,CAAC,IAAI,CACtB;QAAE,SAAS;IAAmC,GAC9C;QAAE,QAAQ;IAAI;AAElB"}}]
+}

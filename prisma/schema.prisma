@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Catalogue des produits et services
+model CatalogItem {
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String
+  reference   String?
+  description String?
+  unitPrice   Decimal     @map("unit_price") @db.Decimal
+
+  // Relations
+  quoteItems  QuoteItem[]
+
+  @@map("catalog_items")
+}
+
+/// Clients
+model Client {
+  id        String    @id @default(uuid()) @db.Uuid
+  name      String
+  email     String?
+  phone     String?
+  address   String?
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+
+  // Relations
+  quotes    Quote[]
+
+  @@map("clients")
+}
+
+/// Devis
+model Quote {
+  id          String     @id @default(uuid()) @db.Uuid
+  quoteNumber String     @unique @map("quote_number")
+  clientId    String     @map("client_id") @db.Uuid
+  status      String     @default("draft")
+  total       Decimal    @default(0) @db.Decimal
+  createdAt   DateTime   @default(now()) @map("created_at") @db.Timestamp(6)
+
+  // Relations
+  client      Client     @relation(fields: [clientId], references: [id])
+  items       QuoteItem[]
+
+  @@index([clientId])
+  @@map("quotes")
+}
+
+/// Lignes de devis
+model QuoteItem {
+  id            String      @id @default(uuid()) @db.Uuid
+  quoteId       String      @map("quote_id") @db.Uuid
+  catalogItemId String      @map("catalog_item_id") @db.Uuid
+  quantity      Int
+  unitPrice     Decimal     @map("unit_price") @db.Decimal
+  total         Decimal     @db.Decimal
+
+  // Relations
+  quote        Quote        @relation(fields: [quoteId], references: [id])
+  catalogItem  CatalogItem  @relation(fields: [catalogItemId], references: [id])
+
+  @@index([quoteId])
+  @@index([catalogItemId])
+  @@map("quote_items")
+}
+
+/// Paramètres de la société
+model CompanySettings {
+  id       String  @id @default(uuid()) @db.Uuid
+  name     String?
+  address  String?
+  phone    String?
+  email    String?
+  logoUrl  String? @map("logo_url")
+
+  @@map("company_settings")
+}
+
