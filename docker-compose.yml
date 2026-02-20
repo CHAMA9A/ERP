@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────
+# RIZAT ERP – Docker Compose
+#
+# Services:
+#   database  – Runs Prisma migrations (one-shot)
+#   backend   – Express.js API (port 3001)
+#   frontend  – React/Vite served by Nginx (port 80)
+#
+# Usage:
+#   docker compose up --build
+# ─────────────────────────────────────────────
+
+services:
+
+  # ── Database migrations (runs once then exits) ────────────────────────────
+  database:
+    build:
+      context: .
+      dockerfile: database/Dockerfile
+    env_file:
+      - .env
+    restart: "no"
+
+  # ── Backend API ───────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - database
+    restart: unless-stopped
+
+  # ── Frontend (Nginx) ──────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        # The frontend calls the API via /api proxy in dev,
+        # but in production Docker the browser hits the backend directly.
+        # Update this to your production domain if needed.
+        VITE_API_URL: http://localhost:3001
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

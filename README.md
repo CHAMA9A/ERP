@@ -1,73 +1,80 @@
-# Welcome to your Lovable project
+# Rizat Modern ERP Interface
 
-## Project info
+Une interface moderne et intuitive pour la gestion d'entreprise (ERP). Construite avec les dernières technologies web pour offrir une expérience utilisateur fluide et réactive.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 📌 À propos du projet
 
-## How can I edit this code?
+Rizat Modern ERP Interface est une solution complète de gestion d'entreprise conçue pour :
+- Centraliser la gestion des données commerciales
+- Offrir une interface utilisateur moderne et responsive
+- Faciliter les opérations quotidiennes de l'entreprise
+- Permettre une collaboration efficace entre les équipes
 
-There are several ways of editing your application.
+## 🚀 Démarrage rapide
 
-**Use Lovable**
+### Prérequis
+- Node.js & npm installés ([installer avec nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+### Installation
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Cloner le repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Accéder au dossier du projet
+cd rizat-modern-erp-interface
 
-# Step 3: Install the necessary dependencies.
+# Installer les dépendances
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Lancer le serveur de développement
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🛠️ Technologies utilisées
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Vite** - Bundler rapide et moderne
+- **React** - Bibliothèque UI
+- **TypeScript** - Typage statique
+- **Tailwind CSS** - Framework CSS utilitaire
+- **shadcn-ui** - Composants UI accessibles et réutilisables
 
-**Use GitHub Codespaces**
+## 📝 Comment éditer le code ?
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Option 1 : IDE local (VS Code, WebStorm, etc.)
+Clonez le repo et modifiez les fichiers localement avec votre éditeur préféré.
 
-## What technologies are used for this project?
+### Option 2 : GitHub
+- Naviguez vers le fichier souhaité
+- Cliquez sur l'icône crayon (Edit)
+- Effectuez vos modifications et committez
 
-This project is built with:
+### Option 3 : GitHub Codespaces
+- Allez à la page principale du repository
+- Cliquez sur "Code" (bouton vert)
+- Sélectionnez "Codespaces" et créez un nouvel environnement
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🌐 Déploiement
 
-## How can I deploy this project?
+Pour déployer votre application :
+1. Buildez le projet : `npm run build`
+2. Déployez sur votre serveur ou plateforme d'hébergement préférée
+3. Configurez votre domaine personnalisé si nécessaire
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 📂 Structure du projet
 
-## Can I connect a custom domain to my Lovable project?
+```
+rizat-modern-erp-interface/
+├── src/              # Code source
+├── public/           # Fichiers statiques
+├── vite.config.ts    # Configuration Vite
+├── tsconfig.json     # Configuration TypeScript
+└── package.json      # Dépendances du projet
+```
 
-Yes, you can!
+## 👥 Contribution
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Les contributions sont bienvenues ! N'hésitez pas à forker le projet et soumettre vos améliorations.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 📄 License
+
+MIT License - Voir LICENSE pour plus de détails

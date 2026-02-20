@@ -1,7 +1,0 @@
-__turbopack_load_page_chunks__("/ForgotPassword", [
-  "static/chunks/b953a68408b235fd.js",
-  "static/chunks/4d9db4965426f657.js",
-  "static/chunks/dcdaa3c3bb033b3d.js",
-  "static/chunks/9e9ed20ed48678f9.js",
-  "static/chunks/turbopack-f098d59cb5fd716a.js"
-])

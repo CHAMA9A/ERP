@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String?
+  companyName String?  @map("company_name")
+  firstName   String?  @map("first_name")
+  lastName    String?  @map("last_name")
+  address     String?
+  phone       String?
+  email       String?
+  customId    Int?     @map("custom_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  quotes      Quote[]
+
+  @@map("clients")
+}
+
+model Quote {
+  id                String      @id @default(uuid()) @db.Uuid
+  quoteNumber       String      @unique @map("quote_number")
+  clientId          String      @map("client_id") @db.Uuid
+  createdBy         String?     @map("created_by") @db.Uuid
+  status            String      @default("draft")
+  date              DateTime?   @db.Date
+  deliveryDate      DateTime?   @map("delivery_date") @db.Date
+  shippingPoint     String?     @map("shipping_point")
+  shippingTerms     String?     @map("shipping_terms")
+  comments          String?
+  remarks           String?
+  tvaRate           Decimal?    @map("tva_rate") @db.Decimal(10, 2)
+  totalHt           Decimal?    @map("total_ht") @db.Decimal(10, 2)
+  totalTva          Decimal?    @map("total_tva") @db.Decimal(10, 2)
+  totalTtc          Decimal?    @map("total_ttc") @db.Decimal(10, 2)
+  total             Decimal     @default(0) @db.Decimal(10, 2)
+  legalNotes        String?     @map("legal_notes")
+  customerReference String?     @map("customer_reference")
+  salesPerson       String?     @map("sales_person")
+  deliveryDelay     String?     @map("delivery_delay")
+  globalIndex       Int?        @map("global_index")
+  createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  client            Client      @relation(fields: [clientId], references: [id])
+  items             QuoteItem[]
+
+  @@index([clientId])
+  @@map("quotes")
+}
+
+model QuoteItem {
+  id            String   @id @default(uuid()) @db.Uuid
+  quoteId       String   @map("quote_id") @db.Uuid
+  catalogItemId String?  @map("catalog_item_id") @db.Uuid
+  productRef    String?  @map("product_ref")
+  description   String?
+  quantity      Int
+  unitPrice     Decimal  @map("unit_price") @db.Decimal(10, 2)
+  totalPrice    Decimal? @map("total_price") @db.Decimal(10, 2)
+  total         Decimal? @db.Decimal(10, 2)
+  sortOrder     Int?     @map("sort_order")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  quote         Quote    @relation(fields: [quoteId], references: [id])
+
+  @@index([quoteId])
+  @@map("quote_items")
+}
+
+model CatalogItem {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String
+  reference   String?
+  description String?
+  unitPrice   Decimal  @map("unit_price") @db.Decimal(10, 2)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("catalog_items")
+}
+
+model CompanySettings {
+  id                String   @id @default(uuid()) @db.Uuid
+  name              String?
+  address           String?
+  phone             String?
+  email             String?
+  logoUrl           String?  @map("logo_url")
+  legalNotesDefault String?  @map("legal_notes_default")
+  defaultTva        Decimal? @map("default_tva") @db.Decimal(10, 2)
+  siren             String?
+  tvaNumber         String?  @map("tva_number")
+  paymentMethod     String?  @map("payment_method")
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("company_settings")
+}
+
+model Profile {
+  id        String   @id @db.Uuid
+  email     String?
+  fullName  String?  @map("full_name")
+  role      String?
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("profiles")
+}
